@@ -21,6 +21,7 @@ readonly FILEPATHS=(
     "node_modules ../package.json"
     ".virtualenv ../requirements.txt"
     ".venv ../requirements.txt"
+    "_site ../_config.yml"
     ".vagrant ../Vagrantfile"
     "bower_components ../bower.json"
     "target ../pom.xml"
