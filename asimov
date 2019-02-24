@@ -50,7 +50,7 @@ exclude_file() {
     while read -r full_path; do
         local display_path="${full_path/#$HOME\//'~'/}"
         if tmutil isexcluded "$full_path" | grep -q '\[Excluded\]'; then
-            echo "- ${display_path} already excluded."
+            echo "${display_path} already excluded."
             continue
         fi
 
@@ -59,7 +59,7 @@ exclude_file() {
         tmutil addexclusion "$full_path"
 
         sizeondisk=$(du -hs "$full_path" | cut -f1)
-        echo "- ${display_path} excluded ($sizeondisk)."
+        echo "${display_path} excluded ($sizeondisk)."
   done
 }
 
