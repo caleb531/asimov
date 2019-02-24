@@ -47,18 +47,19 @@ dependency_file_exists() {
 
 # Exclude the given path from Time Machine backups.
 exclude_file() {
-    while read -r path; do
-        if tmutil isexcluded "$path" | grep -q '\[Excluded\]'; then
-            echo "- ${path} is already excluded, skipping."
+    while read -r full_path; do
+        local display_path="${full_path/#$HOME\//'~'/}"
+        if tmutil isexcluded "$full_path" | grep -q '\[Excluded\]'; then
+            echo "- ${display_path} already excluded."
             continue
         fi
 
         # Using the -p option for fixed-path exclusion requires sudo, so instead
         # use the default ("sticky") exclusionr
-        tmutil addexclusion "$path"
+        tmutil addexclusion "$full_path"
 
-        sizeondisk=$(du -hs "$path" | cut -f1)
-        echo "- ${path} has been excluded from Time Machine backups ($sizeondisk)."
+        sizeondisk=$(du -hs "$full_path" | cut -f1)
+        echo "- ${display_path} excluded ($sizeondisk)."
   done
 }
 
