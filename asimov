@@ -87,6 +87,6 @@ for i in "${FILEPATHS[@]}"; do
 done
 
 
-echo -e "\\n\\033[0;36mFinding development directories to exclude...\\033[0m\\n"
+echo -e "Finding development directories to exclude...\n"
 
 find "${find_parameters[@]}" | dependency_file_exists | exclude_file
