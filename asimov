@@ -53,6 +53,8 @@ exclude_file() {
             continue
         fi
 
+        # Using the -p option for fixed-path exclusion requires sudo, so instead
+        # use the default ("sticky") exclusionr
         tmutil addexclusion "$path"
 
         sizeondisk=$(du -hs "$path" | cut -f1)
